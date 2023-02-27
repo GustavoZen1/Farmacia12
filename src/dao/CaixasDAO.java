@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import modelo.Caixas;
+
 import java.util.logging.Logger;
 import java.util.logging.Level;
 
@@ -16,30 +17,28 @@ public class CaixasDAO {
 
     private Connection connection;
 
-    int idCaixa;
+    int idCaixas;
     int idCliente;
     int idProduto;
-    String nomeProduto;
-    int quantidade;
     String dataVenda;
-    double valorUnitario;
     double valorTotal;
-
+    String nomeCliente;
+    String formaPagamento;
+    
     public CaixasDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
 
-    public void adiciona(Caixas caixa) {
-        String sql = "INSERT INTO caixas (idCliente, idProduto, nomeProduto, quantidade, dataVenda, valorSub, valorTotal) VALUES(?,?,?,?,?,?,?)";
+    public void adiciona(Caixas caixas) {
+        String sql = "INSERT INTO caixas (idCliente, dataVenda, valorTotal, nomeCliente, formaPagamento ) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, caixa.getIdCliente());
-            stmt.setInt(2, caixa.getIdProduto());
-            stmt.setString(3, caixa.getNomeProduto());
-            stmt.setInt(4, caixa.getQuantidade());
-            stmt.setString(5, caixa.getDataVenda());
-            stmt.setDouble(6, caixa.getValorUnitario());
-            stmt.setDouble(7, caixa.getValorTotal());
+            stmt.setInt     (1, caixas.getIdCliente());
+            stmt.setInt     (2, caixas.getIdProduto());
+            stmt.setString  (3, caixas.getDataVenda());
+            stmt.setDouble  (4, caixas.getValorTotal());
+            stmt.setString  (5, caixas.getNomeCliente());
+            stmt.setString  (6, caixas.getFormaPagamento());
 
             stmt.execute();
             stmt.close();
@@ -48,16 +47,13 @@ public class CaixasDAO {
         }
     }
 
-    public void update(Caixas caixa) {
-        String sql = "UPDATE caixas SET nomeProduto = ?, quantidade = ?, dataVenda = ?, valorSub = ?, valorTotal = ? WHERE idCaixas = ?";
+    public void update(Caixas caixas) {
+        String sql = "UPDATE caixas SET  dataVenda = ?, valorTotal = ?, formaPagamento WHERE idCaixas = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, caixa.getNomeProduto());
-            stmt.setInt(2, caixa.getQuantidade());
-            stmt.setString(3, caixa.getDataVenda());
-            stmt.setDouble(4, caixa.getValorUnitario());
-            stmt.setDouble(5, caixa.getValorTotal());
-            stmt.setInt(6, caixa.getIdCaixa());
+            stmt.setString(1, caixas.getDataVenda());
+            stmt.setDouble(2, caixas.getValorTotal());
+            stmt.setString(3, caixas.getFormaPagamento());
             stmt.execute();
             stmt.close();
         } catch (SQLException u) {
@@ -66,11 +62,11 @@ public class CaixasDAO {
 
     }
 
-    public void delete(Caixas caixa) {
+    public void delete(Caixas caixas) {
         String sql = "DELETE FROM caixas WHERE idCaixas = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, caixa.getIdCliente());
+            stmt.setInt(1, caixas.getIdCaixas());
             stmt.execute();
             JOptionPane.showMessageDialog(null, "Excluido com sucesso!");
             stmt.close();
@@ -90,14 +86,12 @@ public class CaixasDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Caixas caixa = new Caixas();
-                caixa.setIdCaixa(rs.getInt("idCaixas"));
+                caixa.setIdCaixas(rs.getInt("idCaixas"));
                 caixa.setIdCliente(rs.getInt("idCliente"));
                 caixa.setIdProduto(rs.getInt("idProduto"));
-                caixa.setNomeProduto(rs.getString("nomeProduto"));
-                caixa.setQuantidade(rs.getInt("quantidade"));
                 caixa.setDataVenda(rs.getString("dataVenda"));
-                caixa.setValorUnitario(rs.getDouble("valorSub"));
                 caixa.setValorTotal(rs.getDouble("valorTotal"));
+                caixa.setFormaPagamento(rs.getString("formaPagamento"));
                 caixas.add(caixa);
             }
         } catch (SQLException ex) {

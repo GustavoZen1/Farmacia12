@@ -76,7 +76,7 @@ public class ProdutoGUI extends javax.swing.JFrame {
         txtBula.setBounds(20, 130, 200, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Bula:");
+        jLabel4.setText("Marca");
         boderUsuario1.add(jLabel4);
         jLabel4.setBounds(20, 100, 70, 30);
 
@@ -98,9 +98,9 @@ public class ProdutoGUI extends javax.swing.JFrame {
         boderUsuario1.add(jLabel6);
         jLabel6.setBounds(20, 250, 100, 30);
         boderUsuario1.add(jSeparator2);
-        jSeparator2.setBounds(20, 90, 200, 10);
+        jSeparator2.setBounds(20, 90, 200, 3);
         boderUsuario1.add(jSeparator3);
-        jSeparator3.setBounds(20, 162, 200, 10);
+        jSeparator3.setBounds(20, 162, 200, 3);
         boderUsuario1.add(jSeparator4);
         jSeparator4.setBounds(20, 240, 200, 10);
         boderUsuario1.add(jSeparator5);
@@ -130,7 +130,7 @@ public class ProdutoGUI extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID Produto", "Nome", "Bula", "Preço", "Quantidade"
+                "ID Produto", "Nome", "Marca", "Preço", "Quantidade"
             }
         ));
         jtProduto.setGridColor(new java.awt.Color(255, 255, 255));
@@ -189,7 +189,7 @@ public class ProdutoGUI extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(77, Short.MAX_VALUE)
                 .addComponent(boderUsuario1, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(89, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

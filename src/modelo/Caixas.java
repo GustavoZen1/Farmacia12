@@ -1,22 +1,21 @@
 package modelo;
 
 public class Caixas {
-    
-    int idCaixa;
+
+    int idCaixas;
     int idCliente;
     int idProduto;
-    String nomeProduto;
-    int quantidade;
     String dataVenda;
-    double valorUnitario;
     double valorTotal;
+    String nomeCliente;
+    String formaPagamento;
 
-    public int getIdCaixa() {
-        return idCaixa;
+    public int getIdCaixas() {
+        return idCaixas;
     }
 
-    public void setIdCaixa(int idCaixa) {
-        this.idCaixa = idCaixa;
+    public void setIdCaixas(int idCaixas) {
+        this.idCaixas = idCaixas;
     }
 
     public int getIdCliente() {
@@ -35,36 +34,12 @@ public class Caixas {
         this.idProduto = idProduto;
     }
 
-    public String getNomeProduto() {
-        return nomeProduto;
-    }
-
-    public void setNomeProduto(String nomeProduto) {
-        this.nomeProduto = nomeProduto;
-    }
-
-    public int getQuantidade() {
-        return quantidade;
-    }
-
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
-    }
-
     public String getDataVenda() {
         return dataVenda;
     }
 
     public void setDataVenda(String dataVenda) {
         this.dataVenda = dataVenda;
-    }
-
-    public double getValorUnitario() {
-        return valorUnitario;
-    }
-
-    public void setValorUnitario(double valorUnitario) {
-        this.valorUnitario = valorUnitario;
     }
 
     public double getValorTotal() {
@@ -74,6 +49,24 @@ public class Caixas {
     public void setValorTotal(double valorTotal) {
         this.valorTotal = valorTotal;
     }
+
+    public String getNomeCliente() {
+        return nomeCliente;
+    }
+
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
+    }
+
+    public String getFormaPagamento() {
+        return formaPagamento;
+    }
+
+    public void setFormaPagamento(String formaPagamento) {
+        this.formaPagamento = formaPagamento;
+    }
+
     
     
+
 }
