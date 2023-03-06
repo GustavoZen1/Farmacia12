@@ -31,11 +31,11 @@ public class ClienteDAO {
         String sql = "INSERT INTO cliente (NomeCliente, cpf, cep, edereco, telefone) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getNomeClit());
-            stmt.setString(2, cliente.getCpf());
-            stmt.setString(3, cliente.getCep());
-            stmt.setString(4, cliente.getEdereco());
-            stmt.setString(5, cliente.getTelefone());
+            stmt.setString(1, cliente.getNomeCliente());
+            stmt.setString(2, cliente.getCpfCliente());
+            stmt.setString(3, cliente.getCepCliente());
+            stmt.setString(4, cliente.getEderecoCliente());
+            stmt.setString(5, cliente.getTelefoneCliente());
 
             stmt.execute();
             stmt.close();
@@ -48,11 +48,11 @@ public class ClienteDAO {
         String sql = "UPDATE cliente SET NomeCliente = ?, cpf = ?, cep = ?, edereco = ?, telefone = ? WHERE idCliente = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setString(1, cliente.getNomeClit());
-            stmt.setString(2, cliente.getCpf());
-            stmt.setString(3, cliente.getCep());
-            stmt.setString(4, cliente.getEdereco());
-            stmt.setString(5, cliente.getTelefone());
+            stmt.setString(1, cliente.getNomeCliente());
+            stmt.setString(2, cliente.getCpfCliente());
+            stmt.setString(3, cliente.getCepCliente());
+            stmt.setString(4, cliente.getEderecoCliente());
+            stmt.setString(5, cliente.getTelefoneCliente());
             stmt.setInt(6, cliente.getIdCliente());
             stmt.execute();
             stmt.close();
@@ -87,11 +87,11 @@ public class ClienteDAO {
             while (rs.next()) {
                 Cliente cliente = new Cliente();
                 cliente.setIdCliente(rs.getInt("idCliente"));
-                cliente.setNomeClit(rs.getString("NomeCliente"));
-                cliente.setCpf(rs.getString("cpf"));
-                cliente.setCep(rs.getString("cep"));
-                cliente.setEdereco(rs.getString("edereco"));
-                cliente.setTelefone(rs.getString("telefone"));
+                cliente.setNomeCliente(rs.getString("NomeCliente"));
+                cliente.setCpfCliente(rs.getString("cpf"));
+                cliente.setCepCliente(rs.getString("cep"));
+                cliente.setEderecoCliente(rs.getString("edereco"));
+                cliente.setTelefoneCliente(rs.getString("telefone"));
                 clientes.add(cliente);
             }
         } catch (SQLException ex) {
