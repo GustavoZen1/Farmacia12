@@ -37,7 +37,6 @@ public class CaixasGUI extends javax.swing.JFrame {
         jPanel8 = new javax.swing.JPanel();
         somar1 = new javax.swing.JButton();
         apagar = new javax.swing.JButton();
-        txfNomeCliente = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         txfValorU = new javax.swing.JTextField();
@@ -51,9 +50,8 @@ public class CaixasGUI extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         txfData = new javax.swing.JFormattedTextField();
         jButton2 = new javax.swing.JButton();
+        cbNomeCliente = new javax.swing.JComboBox<>();
         txfIdCliente = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        pesquisarCliente = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtVendas = new javax.swing.JTable();
@@ -145,10 +143,6 @@ public class CaixasGUI extends javax.swing.JFrame {
             }
         });
 
-        txfNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
-        txfNomeCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfNomeCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel3.setText("Cliente:");
 
@@ -232,8 +226,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txfNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, 0))
+                            .addComponent(txfNomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txfData, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -276,65 +269,45 @@ public class CaixasGUI extends javax.swing.JFrame {
                 .addContainerGap(31, Short.MAX_VALUE))
         );
 
+        cbNomeCliente.setBackground(new java.awt.Color(255, 255, 255));
+        cbNomeCliente.setForeground(new java.awt.Color(153, 153, 153));
+        cbNomeCliente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o cliente" }));
+
         txfIdCliente.setBackground(new java.awt.Color(255, 255, 255));
-        txfIdCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfIdCliente.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-
-        jLabel11.setText("CodC");
-
-        pesquisarCliente.setBackground(new java.awt.Color(153, 153, 153));
-        pesquisarCliente.setFont(new java.awt.Font("Calibri", 0, 12)); // NOI18N
-        pesquisarCliente.setText("Pesquisar");
-        pesquisarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pesquisarClienteActionPerformed(evt);
-            }
-        });
+        txfIdCliente.setForeground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 379, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel8Layout.createSequentialGroup()
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel11))
-                            .addComponent(txfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addGap(8, 8, 8)
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                                .addGap(0, 0, 0)
-                                .addComponent(txfNomeCliente)
-                                .addGap(0, 0, 0)
-                                .addComponent(pesquisarCliente))))
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel8Layout.createSequentialGroup()
                         .addComponent(apagar, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 98, Short.MAX_VALUE)
-                        .addComponent(somar1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30))
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE)
+                        .addComponent(somar1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 6, Short.MAX_VALUE))))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(9, 9, 9)
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 15, Short.MAX_VALUE)
-                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txfNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txfIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(pesquisarCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cbNomeCliente)
+                    .addComponent(txfIdCliente))
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
@@ -362,7 +335,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(txfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -374,7 +347,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txfValorTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
@@ -490,7 +463,7 @@ public class CaixasGUI extends javax.swing.JFrame {
         txfData.setText("");
         txfIdProduto.setText("");
         txfIdCliente.setText("");
-        txfNomeCliente.setText("");
+        cbNomeCliente.setSelectedItem(0);
         txfValorTotal.setText("");
 
     }//GEN-LAST:event_apagarActionPerformed
@@ -540,7 +513,7 @@ public class CaixasGUI extends javax.swing.JFrame {
         caixas.setIdCliente(Integer.parseInt(txfIdCliente.getText()));
         caixas.setDataVenda(txfData.getText());
         caixas.setValorTotal(Double.parseDouble(txfValorTotal.getText()));
-        caixas.setNomeCliente(txfNomeCliente.getText());
+        caixas.setNomeCliente(cbNomeCliente.getSelectedItem().toString());
         caixas.setFormaPagamento(cbFormaPagamento.getSelectedItem().toString()); 
         CaixasDAO dao = new CaixasDAO();
         dao.adiciona(caixas);
@@ -554,24 +527,17 @@ public class CaixasGUI extends javax.swing.JFrame {
         txfQuantidade.setText("");
         txfData.setText("");
         txfIdProduto.setText("");
-        txfNomeCliente.setText("");
+        cbNomeCliente.setSelectedItem(0);
         txfValorTotal.setText("");
 
     }//GEN-LAST:event_jbCancelActionPerformed
-
-    private void pesquisarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pesquisarClienteActionPerformed
-       	Caixas caixa = new Caixas();
-                    // METODO DE PESQUISA CHAMA OS ATRIBUTOS INSTANCIADOS NA CLASSE BEANSCLIENTE()MOD SETANDO O BOTAO PESQUISA
-	caixa.setIdCliente(Integer.parseInt(txfIdCliente.getText()));//SETA O BOTAO PESQUISAR PARA RECEBER TEXTO
-	//BeansUsuario model = control.busUsuario(mod);//INSTANCIA A CLASSE BEANSCLIENTE AO MESMO TERMPO CHAMANDO A CLASSE BUSCLIENTE NA CLASSE BEANSUSUARIO
-	//preencherTabela("select *from login where nome like'%" + mod.getPesquisar() + "%'");
-
-    }//GEN-LAST:event_pesquisarClienteActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -608,11 +574,11 @@ public class CaixasGUI extends javax.swing.JFrame {
     private javax.swing.JButton apagar;
     private gui.boderUsuario boderUsuario1;
     private javax.swing.JComboBox<String> cbFormaPagamento;
+    private javax.swing.JComboBox<String> cbNomeCliente;
     private javax.swing.JButton confirmarCompra;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -640,12 +606,10 @@ public class CaixasGUI extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JButton jbCancel;
     private javax.swing.JTable jtVendas;
-    private javax.swing.JButton pesquisarCliente;
     private javax.swing.JButton somar1;
     private javax.swing.JFormattedTextField txfData;
     private javax.swing.JTextField txfIdCliente;
     private javax.swing.JTextField txfIdProduto;
-    private javax.swing.JTextField txfNomeCliente;
     private javax.swing.JTextField txfNomeProduto;
     private javax.swing.JTextField txfQuantidade;
     private javax.swing.JTextField txfValorTotal;

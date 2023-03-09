@@ -22,11 +22,11 @@ public class ClienteGUI extends javax.swing.JFrame {
         for (Cliente cliente : dao.leitura()) {
             modelo.addRow(new Object[]{
                 cliente.getIdCliente(),
-                cliente.getNomeClit(),
-                cliente.getCpf(),
-                cliente.getCep(),
-                cliente.getEdereco(),
-                cliente.getTelefone()
+                cliente.getNomeCliente(),
+                cliente.getCpfCliente(),
+                cliente.getCepCliente(),
+                cliente.getEderecoCliente(),
+                cliente.getTelefoneCliente()
                 
             });
         }
@@ -370,11 +370,11 @@ public class ClienteGUI extends javax.swing.JFrame {
         if (jtCliente.getSelectedRow() != -1) {
 
             Cliente cliente = new Cliente();
-            cliente.setNomeClit(txtNomeClient.getText());
-            cliente.setCpf(txtCpf.getText());
-            cliente.setCep(txtCep.getText());
-            cliente.setEdereco(txtEndereco.getText());
-            cliente.setTelefone(txtTelefone.getText());
+            cliente.setNomeCliente(txtNomeClient.getText());
+            cliente.setCpfCliente(txtCpf.getText());
+            cliente.setCepCliente(txtCep.getText());
+            cliente.setEderecoCliente(txtEndereco.getText());
+            cliente.setTelefoneCliente(txtTelefone.getText());
 
             cliente.setIdCliente((int) jtCliente.getValueAt(jtCliente.getSelectedRow(), 0));
             if ((txtNomeClient.getText().isEmpty()) || (txtCpf.getText().isEmpty()) || (txtCep.getText().isEmpty()) || (txtEndereco.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
@@ -395,11 +395,11 @@ public class ClienteGUI extends javax.swing.JFrame {
 
     private void btCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastroActionPerformed
         Cliente cliente = new Cliente();
-        cliente.setNomeClit(txtNomeClient.getText());
-        cliente.setCpf(txtCpf.getText());
-        cliente.setCep(txtCep.getText());
-        cliente.setEdereco(txtEndereco.getText());
-        cliente.setTelefone(txtTelefone.getText());
+        cliente.setNomeCliente(txtNomeClient.getText());
+        cliente.setCpfCliente(txtCpf.getText());
+        cliente.setCepCliente(txtCep.getText());
+        cliente.setEderecoCliente(txtEndereco.getText());
+        cliente.setTelefoneCliente(txtTelefone.getText());
 
         if ((txtNomeClient.getText().isEmpty()) || (txtCpf.getText().isEmpty()) || (txtCep.getText().isEmpty()) || (txtEndereco.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, " Os campos não podem retornar vazios ");
@@ -422,11 +422,11 @@ public class ClienteGUI extends javax.swing.JFrame {
         if (jtCliente.getSelectedRow() != -1) {
 
             Cliente cliente = new Cliente();
-            cliente.setNomeClit(txtNomeClient.getText());
-            cliente.setCpf(txtCpf.getText());
-            cliente.setCep(txtCep.getText());
-            cliente.setEdereco(txtEndereco.getText());
-            cliente.setTelefone(txtTelefone.getText());
+            cliente.setNomeCliente(txtNomeClient.getText());
+            cliente.setCpfCliente(txtCpf.getText());
+            cliente.setCepCliente(txtCep.getText());
+            cliente.setEderecoCliente(txtEndereco.getText());
+            cliente.setTelefoneCliente(txtTelefone.getText());
 
             cliente.setIdCliente((int) jtCliente.getValueAt(jtCliente.getSelectedRow(), 0));
             if ((txtNomeClient.getText().isEmpty()) || (txtCpf.getText().isEmpty()) || (txtCep.getText().isEmpty()) || (txtEndereco.getText().isEmpty()) || (txtTelefone.getText().isEmpty())) {

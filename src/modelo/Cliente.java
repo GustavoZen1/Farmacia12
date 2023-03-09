@@ -4,11 +4,11 @@ package modelo;
 public class Cliente {
     
     int idCliente;
-    String nomeClit;
-    String cpf;
-    String cep;
-    String edereco;
-    String telefone;
+    String nomeCliente;
+    String cpfCliente;
+    String cepCliente;
+    String ederecoCliente;
+    String telefoneCliente;
 
     public int getIdCliente() {
         return idCliente;
@@ -18,45 +18,46 @@ public class Cliente {
         this.idCliente = idCliente;
     }
 
-    public String getNomeClit() {
-        return nomeClit;
+    public String getNomeCliente() {
+        return nomeCliente;
     }
 
-    public void setNomeClit(String nomeClit) {
-        this.nomeClit = nomeClit;
+    public void setNomeCliente(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
-    public String getCpf() {
-        return cpf;
+    public String getCpfCliente() {
+        return cpfCliente;
     }
 
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public void setCpfCliente(String cpfCliente) {
+        this.cpfCliente = cpfCliente;
     }
 
-    public String getCep() {
-        return cep;
+    public String getCepCliente() {
+        return cepCliente;
     }
 
-    public void setCep(String cep) {
-        this.cep = cep;
+    public void setCepCliente(String cepCliente) {
+        this.cepCliente = cepCliente;
     }
 
-    public String getEdereco() {
-        return edereco;
+    public String getEderecoCliente() {
+        return ederecoCliente;
     }
 
-    public void setEdereco(String edereco) {
-        this.edereco = edereco;
+    public void setEderecoCliente(String ederecoCliente) {
+        this.ederecoCliente = ederecoCliente;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getTelefoneCliente() {
+        return telefoneCliente;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setTelefoneCliente(String telefoneCliente) {
+        this.telefoneCliente = telefoneCliente;
     }
-    
+
+   
     
 }

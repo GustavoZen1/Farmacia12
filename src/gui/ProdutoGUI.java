@@ -23,9 +23,9 @@ public class ProdutoGUI extends javax.swing.JFrame {
             modelo.addRow(new Object[]{
                 cliente.getIdProduto(),
                 cliente.getNomeProduto(),
-                cliente.getBula(),
-                cliente.getValor(),
-                cliente.getQuantidade()
+                cliente.getMarcaProduto(),
+                cliente.getValorProduto(),
+                cliente.getQuantidadeProduto()
             });
         }
     }
@@ -36,13 +36,13 @@ public class ProdutoGUI extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         boderUsuario1 = new gui.boderUsuario();
-        txtNomeProd = new javax.swing.JTextField();
+        txtNomeProduto = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtBula = new javax.swing.JTextField();
+        txtMarcaProduto = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtPreco = new javax.swing.JTextField();
+        txtPrecoProduto = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtQuantidade = new javax.swing.JTextField();
+        txtQuantidadeProduto = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
@@ -62,36 +62,41 @@ public class ProdutoGUI extends javax.swing.JFrame {
 
         boderUsuario1.setBackground(new java.awt.Color(255, 255, 255));
 
-        txtNomeProd.setBorder(null);
-        boderUsuario1.add(txtNomeProd);
-        txtNomeProd.setBounds(20, 60, 200, 30);
+        txtNomeProduto.setBorder(null);
+        boderUsuario1.add(txtNomeProduto);
+        txtNomeProduto.setBounds(20, 60, 200, 30);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nome:");
         boderUsuario1.add(jLabel3);
         jLabel3.setBounds(20, 30, 70, 30);
 
-        txtBula.setBorder(null);
-        boderUsuario1.add(txtBula);
-        txtBula.setBounds(20, 130, 200, 30);
+        txtMarcaProduto.setBorder(null);
+        boderUsuario1.add(txtMarcaProduto);
+        txtMarcaProduto.setBounds(20, 130, 200, 30);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Marca");
         boderUsuario1.add(jLabel4);
         jLabel4.setBounds(20, 100, 70, 30);
 
-        txtPreco.setBorder(null);
-        boderUsuario1.add(txtPreco);
-        txtPreco.setBounds(20, 210, 200, 30);
+        txtPrecoProduto.setBorder(null);
+        txtPrecoProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrecoProdutoActionPerformed(evt);
+            }
+        });
+        boderUsuario1.add(txtPrecoProduto);
+        txtPrecoProduto.setBounds(20, 210, 200, 30);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Preço:");
         boderUsuario1.add(jLabel5);
         jLabel5.setBounds(20, 180, 70, 30);
 
-        txtQuantidade.setBorder(null);
-        boderUsuario1.add(txtQuantidade);
-        txtQuantidade.setBounds(20, 280, 200, 30);
+        txtQuantidadeProduto.setBorder(null);
+        boderUsuario1.add(txtQuantidadeProduto);
+        txtQuantidadeProduto.setBounds(20, 280, 200, 30);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Quantidade:");
@@ -235,33 +240,33 @@ public class ProdutoGUI extends javax.swing.JFrame {
 
     private void jtProdutoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtProdutoMouseClicked
         if (jtProduto.getSelectedRow() != -1) {
-            txtNomeProd.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 1).toString());
-            txtBula.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 2).toString());
-            txtPreco.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 3).toString());
-            txtQuantidade.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 4).toString());
+            txtNomeProduto.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 1).toString());
+            txtMarcaProduto.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 2).toString());
+            txtPrecoProduto.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 3).toString());
+            txtQuantidadeProduto.setText(jtProduto.getValueAt(jtProduto.getSelectedRow(), 4).toString());
         }
     }//GEN-LAST:event_jtProdutoMouseClicked
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
         Produto produto = new Produto();
-        produto.setNomeProduto(txtNomeProd.getText());
-        produto.setBula(txtBula.getText());
-        produto.setValor(Integer.parseInt(txtPreco.getText()));
-        produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+        produto.setNomeProduto(txtNomeProduto.getText());
+        produto.setMarcaProduto(txtMarcaProduto.getText());
+        produto.setValorProduto(Integer.parseInt(txtPrecoProduto.getText()));
+        produto.setQuantidadeProduto(Integer.parseInt(txtQuantidadeProduto.getText()));
 
-        if ((txtNomeProd.getText().isEmpty()) || (txtBula.getText().isEmpty()) || (txtPreco.getText().isEmpty()) || (txtQuantidade.getText().isEmpty())) {
+        if ((txtNomeProduto.getText().isEmpty()) || (txtMarcaProduto.getText().isEmpty()) || (txtPrecoProduto.getText().isEmpty()) || (txtQuantidadeProduto.getText().isEmpty())) {
             JOptionPane.showMessageDialog(null, " Os campos não podem retornar vazios ");
         } else {
 
             ProdutoDAO dao = new ProdutoDAO();
             dao.adiciona(produto);
-            JOptionPane.showMessageDialog(null, " Produto " + txtNomeProd.getText() + " inserido com sucesso! ");
+            JOptionPane.showMessageDialog(null, " Produto " + txtNomeProduto.getText() + " inserido com sucesso! ");
         }
 
-        txtNomeProd.setText("");
-        txtBula.setText("");
-        txtPreco.setText("");
-        txtQuantidade.setText("");
+        txtNomeProduto.setText("");
+        txtMarcaProduto.setText("");
+        txtPrecoProduto.setText("");
+        txtQuantidadeProduto.setText("");
         leiaJTable();
     }//GEN-LAST:event_btCadastrarActionPerformed
 
@@ -269,24 +274,24 @@ public class ProdutoGUI extends javax.swing.JFrame {
         if (jtProduto.getSelectedRow() != -1) {
 
             Produto produto = new Produto();
-            produto.setNomeProduto(txtNomeProd.getText());
-            produto.setBula(txtBula.getText());
-            produto.setValor(Double.parseDouble(txtPreco.getText()));
-            produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+            produto.setNomeProduto(txtNomeProduto.getText());
+            produto.setMarcaProduto(txtMarcaProduto.getText());
+            produto.setValorProduto(Double.parseDouble(txtPrecoProduto.getText()));
+            produto.setQuantidadeProduto(Integer.parseInt(txtQuantidadeProduto.getText()));
 
             produto.setIdProduto((int) jtProduto.getValueAt(jtProduto.getSelectedRow(), 0));
-            if ((txtNomeProd.getText().isEmpty()) || (txtBula.getText().isEmpty()) || (txtPreco.getText().isEmpty()) || (txtQuantidade.getText().isEmpty())) {
+            if ((txtNomeProduto.getText().isEmpty()) || (txtMarcaProduto.getText().isEmpty()) || (txtPrecoProduto.getText().isEmpty()) || (txtQuantidadeProduto.getText().isEmpty())) {
                 JOptionPane.showMessageDialog(null, "O campo não pode retornar vazio");
             } else {
                 ProdutoDAO dao = new ProdutoDAO();
                 dao.update(produto);
-                JOptionPane.showMessageDialog(null, " Cliente " + txtNomeProd.getText() + " atualizado com sucesso! ");
+                JOptionPane.showMessageDialog(null, " Cliente " + txtNomeProduto.getText() + " atualizado com sucesso! ");
             }
         }
-        txtNomeProd.setText("");
-        txtBula.setText("");
-        txtPreco.setText("");
-        txtQuantidade.setText("");
+        txtNomeProduto.setText("");
+        txtMarcaProduto.setText("");
+        txtPrecoProduto.setText("");
+        txtQuantidadeProduto.setText("");
         leiaJTable();
     }//GEN-LAST:event_btAtualizarActionPerformed
 
@@ -294,26 +299,30 @@ public class ProdutoGUI extends javax.swing.JFrame {
         if (jtProduto.getSelectedRow() != -1) {
 
             Produto produto = new Produto();
-            produto.setNomeProduto(txtNomeProd.getText());
-            produto.setBula(txtBula.getText());
-            produto.setValor(Double.parseDouble(txtPreco.getText()));
-            produto.setQuantidade(Integer.parseInt(txtQuantidade.getText()));
+            produto.setNomeProduto(txtNomeProduto.getText());
+            produto.setMarcaProduto(txtMarcaProduto.getText());
+            produto.setValorProduto(Double.parseDouble(txtPrecoProduto.getText()));
+            produto.setQuantidadeProduto(Integer.parseInt(txtQuantidadeProduto.getText()));
 
             produto.setIdProduto((int) jtProduto.getValueAt(jtProduto.getSelectedRow(), 0));
-            if ((txtNomeProd.getText().isEmpty()) || (txtBula.getText().isEmpty()) || (txtPreco.getText().isEmpty()) || (txtQuantidade.getText().isEmpty())) {
+            if ((txtNomeProduto.getText().isEmpty()) || (txtMarcaProduto.getText().isEmpty()) || (txtPrecoProduto.getText().isEmpty()) || (txtQuantidadeProduto.getText().isEmpty())) {
                 JOptionPane.showMessageDialog(null, "O campo não pode retornar vazio");
             } else {
                 ProdutoDAO dao = new ProdutoDAO();
                 dao.delete(produto);
-                JOptionPane.showMessageDialog(null, " Cliente " + txtNomeProd.getText() + " Excludo com sucesso! ");
+                JOptionPane.showMessageDialog(null, " Cliente " + txtNomeProduto.getText() + " Excludo com sucesso! ");
             }
         }
-        txtNomeProd.setText("");
-        txtBula.setText("");
-        txtPreco.setText("");
-        txtQuantidade.setText("");
+        txtNomeProduto.setText("");
+        txtMarcaProduto.setText("");
+        txtPrecoProduto.setText("");
+        txtQuantidadeProduto.setText("");
         leiaJTable();
     }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -364,9 +373,9 @@ public class ProdutoGUI extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTable jtProduto;
-    private javax.swing.JTextField txtBula;
-    private javax.swing.JTextField txtNomeProd;
-    private javax.swing.JTextField txtPreco;
-    private javax.swing.JTextField txtQuantidade;
+    private javax.swing.JTextField txtMarcaProduto;
+    private javax.swing.JTextField txtNomeProduto;
+    private javax.swing.JTextField txtPrecoProduto;
+    private javax.swing.JTextField txtQuantidadeProduto;
     // End of variables declaration//GEN-END:variables
 }

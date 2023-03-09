@@ -17,18 +17,18 @@ public class ClienteDAO {
     private Connection connection;
 
     int idCliente;
-    String nomeClit;
-    String cpf;
-    String cep;
-    String edereco;
-    String telefone;
+    String nomeCliente;
+    String cpfCliente;
+    String cepCliente;
+    String ederecoCliente;
+    String telefoneCliente;
 
     public ClienteDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
 
     public void adiciona(Cliente cliente) {
-        String sql = "INSERT INTO cliente (NomeCliente, cpf, cep, edereco, telefone) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO cliente (NomeCliente, cpfCliente, cepCliente, ederecoCliente, telefoneCliente) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente.getNomeCliente());
@@ -45,7 +45,7 @@ public class ClienteDAO {
     }
 
     public void update(Cliente cliente) {
-        String sql = "UPDATE cliente SET NomeCliente = ?, cpf = ?, cep = ?, edereco = ?, telefone = ? WHERE idCliente = ?";
+        String sql = "UPDATE cliente SET NomeCliente = ?, cpfCliente = ?, cepCliente = ?, ederecocliente = ?, telefoneCliente = ? WHERE idCliente = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, cliente.getNomeCliente());
@@ -88,10 +88,10 @@ public class ClienteDAO {
                 Cliente cliente = new Cliente();
                 cliente.setIdCliente(rs.getInt("idCliente"));
                 cliente.setNomeCliente(rs.getString("NomeCliente"));
-                cliente.setCpfCliente(rs.getString("cpf"));
-                cliente.setCepCliente(rs.getString("cep"));
-                cliente.setEderecoCliente(rs.getString("edereco"));
-                cliente.setTelefoneCliente(rs.getString("telefone"));
+                cliente.setCpfCliente(rs.getString("cpfCliente"));
+                cliente.setCepCliente(rs.getString("cepCliente"));
+                cliente.setEderecoCliente(rs.getString("ederecoCliente"));
+                cliente.setTelefoneCliente(rs.getString("telefoneCliente"));
                 clientes.add(cliente);
             }
         } catch (SQLException ex) {

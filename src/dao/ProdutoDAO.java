@@ -18,9 +18,9 @@ public class ProdutoDAO {
 
     int idProduto;
     String nomeProduto;
-    String bula;
-    double valor;
-    int quantidade;
+    String marcaProduto;
+    double valorProduto;
+    int quantidadeProduto;
 
 
     public ProdutoDAO() {
@@ -32,9 +32,9 @@ public class ProdutoDAO {
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto.getNomeProduto());
-            stmt.setString(2, produto.getBula());
-            stmt.setDouble(3, produto.getValor());
-            stmt.setInt(4, produto.getQuantidade());
+            stmt.setString(2, produto.getMarcaProduto());
+            stmt.setDouble(3, produto.getValorProduto());
+            stmt.setInt(4, produto.getQuantidadeProduto());
 
             stmt.execute();
             stmt.close();
@@ -48,9 +48,9 @@ public class ProdutoDAO {
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto.getNomeProduto());
-            stmt.setString(2, produto.getBula());
-            stmt.setDouble(3, produto.getValor());
-            stmt.setInt(4, produto.getQuantidade());
+            stmt.setString(2, produto.getMarcaProduto());
+            stmt.setDouble(3, produto.getValorProduto());
+            stmt.setInt(4, produto.getQuantidadeProduto());
             stmt.setInt(5, produto.getIdProduto());
             stmt.execute();
             stmt.close();
@@ -85,9 +85,9 @@ public class ProdutoDAO {
                 Produto produto = new Produto();
                 produto.setIdProduto(rs.getInt("idProduto"));
                 produto.setNomeProduto(rs.getString("nomeProduto"));
-                produto.setBula(rs.getString("bula"));
-                produto.setValor(rs.getInt("valor"));
-                produto.setQuantidade(rs.getInt("quantidade"));
+                produto.setMarcaProduto(rs.getString("bula"));
+                produto.setValorProduto(rs.getInt("valor"));
+                produto.setQuantidadeProduto(rs.getInt("quantidade"));
                 produtos.add(produto);
             }
         } catch (SQLException ex) {

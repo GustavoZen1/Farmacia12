@@ -5,10 +5,9 @@ public class Produto {
     
     int idProduto;
     String nomeProduto;
-    String bula;
-    double valor;
-    int quantidade;
-
+    String marcaProduto;
+    double valorProduto;
+    int quantidadeProduto;
 
     public int getIdProduto() {
         return idProduto;
@@ -26,29 +25,33 @@ public class Produto {
         this.nomeProduto = nomeProduto;
     }
 
-    public String getBula() {
-        return bula;
+    public String getMarcaProduto() {
+        return marcaProduto;
     }
 
-    public void setBula(String bula) {
-        this.bula = bula;
+    public void setMarcaProduto(String marcaProduto) {
+        this.marcaProduto = marcaProduto;
     }
 
-    public double getValor() {
-        return valor;
+    public double getValorProduto() {
+        return valorProduto;
     }
 
-    public void setValor(double valor) {
-        this.valor = valor;
+    public void setValorProduto(double valorProduto) {
+        this.valorProduto = valorProduto;
     }
 
-    public int getQuantidade() {
-        return quantidade;
+    public int getQuantidadeProduto() {
+        return quantidadeProduto;
     }
 
-    public void setQuantidade(int quantidade) {
-        this.quantidade = quantidade;
+    public void setQuantidadeProduto(int quantidadeProduto) {
+        this.quantidadeProduto = quantidadeProduto;
     }
+
+
+    
+    
 
  
       
