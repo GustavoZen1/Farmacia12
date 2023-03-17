@@ -27,6 +27,22 @@ public class ProdutoDAO {
         this.connection = new ConnectionFactory().getConnection();
     }
 
+    public ResultSet listarComboBox() {
+        connection = new ConnectionFactory().getConnection();
+        String sql = "SELECT * FROM produto ORDER BY nomeProduto;";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            return stmt.executeQuery();
+        }
+        catch(Exception erro){
+            JOptionPane.showMessageDialog(null,"Ocorreu um erro!");
+            return null;
+        }
+        
+    }
+    
+    
+    
     public void adiciona(Produto produto) {
         String sql = "INSERT INTO produto (nomeProduto, bula, valor, quantidade) VALUES(?,?,?,?)";
         try {

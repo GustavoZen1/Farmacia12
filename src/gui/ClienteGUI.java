@@ -39,7 +39,6 @@ public class ClienteGUI extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         boderUsuario1 = new gui.boderUsuario();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
@@ -63,7 +62,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         btCadastro = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
@@ -72,11 +71,6 @@ public class ClienteGUI extends javax.swing.JFrame {
         boderUsuario1.setBackground(new java.awt.Color(255, 255, 255));
         boderUsuario1.add(jLabel1);
         jLabel1.setBounds(40, 130, 0, 0);
-
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Farmacia.png")); // NOI18N
-        boderUsuario1.add(jLabel2);
-        jLabel2.setBounds(120, 0, 120, 120);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Nome:");
@@ -93,7 +87,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         boderUsuario1.add(txtTelefone);
         txtTelefone.setBounds(30, 550, 280, 40);
         boderUsuario1.add(jSeparator1);
-        jSeparator1.setBounds(30, 220, 280, 2);
+        jSeparator1.setBounds(30, 220, 280, 3);
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("CPF:");
@@ -110,7 +104,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         boderUsuario1.add(txtNomeClient);
         txtNomeClient.setBounds(30, 180, 280, 40);
         boderUsuario1.add(jSeparator2);
-        jSeparator2.setBounds(30, 320, 280, 2);
+        jSeparator2.setBounds(30, 320, 280, 3);
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("CEP:");
@@ -132,7 +126,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         boderUsuario1.add(txtCpf);
         txtCpf.setBounds(30, 280, 280, 40);
         boderUsuario1.add(jSeparator3);
-        jSeparator3.setBounds(30, 420, 280, 2);
+        jSeparator3.setBounds(30, 420, 280, 3);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Endereço:");
@@ -149,7 +143,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         boderUsuario1.add(txtCep);
         txtCep.setBounds(30, 380, 280, 40);
         boderUsuario1.add(jSeparator4);
-        jSeparator4.setBounds(30, 510, 280, 2);
+        jSeparator4.setBounds(30, 510, 280, 3);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Telefone:");
@@ -166,7 +160,7 @@ public class ClienteGUI extends javax.swing.JFrame {
         boderUsuario1.add(txtEndereco);
         txtEndereco.setBounds(30, 470, 280, 40);
         boderUsuario1.add(jSeparator5);
-        jSeparator5.setBounds(30, 590, 280, 2);
+        jSeparator5.setBounds(30, 590, 280, 3);
 
         btSair.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         btSair.setText("x");
@@ -182,6 +176,11 @@ public class ClienteGUI extends javax.swing.JFrame {
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 btSairMouseExited(evt);
+            }
+        });
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
             }
         });
         boderUsuario1.add(btSair);
@@ -309,7 +308,8 @@ public class ClienteGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btSairMouseExited
 
     private void btSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSairMouseClicked
-        System.exit(0);
+//        System.exit(0);
+        dispose();
     }//GEN-LAST:event_btSairMouseClicked
 
     private void btAtualizarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btAtualizarMouseEntered
@@ -445,6 +445,10 @@ public class ClienteGUI extends javax.swing.JFrame {
         leiaJTable();
     }//GEN-LAST:event_btExcluirActionPerformed
 
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -488,7 +492,6 @@ public class ClienteGUI extends javax.swing.JFrame {
     private javax.swing.JButton btSair;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

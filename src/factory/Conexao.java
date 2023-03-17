@@ -9,5 +9,6 @@ public class Conexao {
         Connection connection = new ConnectionFactory().getConnection();
         System.out.println("Conexão aberta!");
         connection.close();
+        
     }
 }

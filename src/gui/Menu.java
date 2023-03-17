@@ -63,6 +63,7 @@ public class Menu extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        btSair = new javax.swing.JButton();
         boderUsuario2 = new gui.boderUsuario();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
@@ -114,7 +115,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\pequeno.png")); // NOI18N
 
         javax.swing.GroupLayout btm1Layout = new javax.swing.GroupLayout(btm1);
         btm1.setLayout(btm1Layout);
@@ -129,7 +129,7 @@ public class Menu extends javax.swing.JFrame {
         );
         btm1Layout.setVerticalGroup(
             btm1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ind1, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(ind1, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btm1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
@@ -142,7 +142,6 @@ public class Menu extends javax.swing.JFrame {
         jPanel2.add(btm1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 200, 220, 50));
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Vermelho.png")); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 30, -1, -1));
 
         btm2.setBackground(new java.awt.Color(102, 0, 102));
@@ -174,7 +173,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\remedio.png")); // NOI18N
 
         javax.swing.GroupLayout btm2Layout = new javax.swing.GroupLayout(btm2);
         btm2.setLayout(btm2Layout);
@@ -189,7 +187,7 @@ public class Menu extends javax.swing.JFrame {
         );
         btm2Layout.setVerticalGroup(
             btm2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ind2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(ind2, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btm2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel7)
@@ -230,7 +228,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\dinheiro.png")); // NOI18N
 
         javax.swing.GroupLayout btm3Layout = new javax.swing.GroupLayout(btm3);
         btm3.setLayout(btm3Layout);
@@ -245,7 +242,7 @@ public class Menu extends javax.swing.JFrame {
         );
         btm3Layout.setVerticalGroup(
             btm3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ind3, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(ind3, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btm3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
@@ -286,7 +283,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\cadastro.png")); // NOI18N
 
         javax.swing.GroupLayout btm4Layout = new javax.swing.GroupLayout(btm4);
         btm4.setLayout(btm4Layout);
@@ -301,7 +297,7 @@ public class Menu extends javax.swing.JFrame {
         );
         btm4Layout.setVerticalGroup(
             btm4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ind4, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(ind4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btm4Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel11)
@@ -342,7 +338,6 @@ public class Menu extends javax.swing.JFrame {
         );
 
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\estoque.png")); // NOI18N
 
         javax.swing.GroupLayout btm5Layout = new javax.swing.GroupLayout(btm5);
         btm5.setLayout(btm5Layout);
@@ -357,7 +352,7 @@ public class Menu extends javax.swing.JFrame {
         );
         btm5Layout.setVerticalGroup(
             btm5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(ind5, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
+            .addComponent(ind5, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, btm5Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel13)
@@ -379,12 +374,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel1.setText("Clientes");
         boderUsuario1.add(jLabel1);
         jLabel1.setBounds(0, 0, 210, 190);
-
-        jLabel15.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario1.add(jLabel15);
         jLabel15.setBounds(90, 90, 160, 80);
-
-        jLabel16.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario1.add(jLabel16);
         jLabel16.setBounds(130, 130, 120, 80);
 
@@ -396,12 +387,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel20.setText("Clientes");
         boderUsuario4.add(jLabel20);
         jLabel20.setBounds(10, 70, 110, 30);
-
-        jLabel21.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario4.add(jLabel21);
         jLabel21.setBounds(90, 90, 160, 80);
-
-        jLabel22.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario4.add(jLabel22);
         jLabel22.setBounds(130, 130, 120, 80);
 
@@ -410,6 +397,29 @@ public class Menu extends javax.swing.JFrame {
 
         jPanel1.add(boderUsuario1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 20, 210, 190));
 
+        btSair.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        btSair.setText("x");
+        btSair.setBorder(null);
+        btSair.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btSair.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btSairMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                btSairMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btSairMouseExited(evt);
+            }
+        });
+        btSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSairActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(970, 0, -1, -1));
+
         boderUsuario2.setBackground(new java.awt.Color(0, 153, 153));
 
         jLabel17.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -417,12 +427,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel17.setText("Produto");
         boderUsuario2.add(jLabel17);
         jLabel17.setBounds(0, -1, 200, 190);
-
-        jLabel18.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario2.add(jLabel18);
         jLabel18.setBounds(90, 90, 120, 80);
-
-        jLabel19.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario2.add(jLabel19);
         jLabel19.setBounds(130, 120, 160, 80);
 
@@ -435,12 +441,8 @@ public class Menu extends javax.swing.JFrame {
         jLabel2.setText("Caixas");
         boderUsuario3.add(jLabel2);
         jLabel2.setBounds(0, -1, 200, 190);
-
-        jLabel14.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario3.add(jLabel14);
         jLabel14.setBounds(90, 90, 120, 80);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\898557\\Desktop\\Icones\\Osvaldo.png")); // NOI18N
         boderUsuario3.add(jLabel4);
         jLabel4.setBounds(130, 120, 160, 80);
 
@@ -496,6 +498,25 @@ public class Menu extends javax.swing.JFrame {
         rgb.setVisible(true);
     }//GEN-LAST:event_lbClienteMouseClicked
 
+    private void btSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSairMouseClicked
+                System.exit(0);
+       
+    }//GEN-LAST:event_btSairMouseClicked
+
+    private void btSairMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSairMouseEntered
+        btSair.setBackground(Color.white);
+        btSair.setBackground(Color.red);
+    }//GEN-LAST:event_btSairMouseEntered
+
+    private void btSairMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btSairMouseExited
+        btSair.setBackground(Color.red);
+        btSair.setBackground(Color.white);
+    }//GEN-LAST:event_btSairMouseExited
+
+    private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btSairActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -549,6 +570,7 @@ public class Menu extends javax.swing.JFrame {
     private gui.boderUsuario boderUsuario2;
     private gui.boderUsuario boderUsuario3;
     private gui.boderUsuario boderUsuario4;
+    private javax.swing.JButton btSair;
     private javax.swing.JPanel btm1;
     private javax.swing.JPanel btm2;
     private javax.swing.JPanel btm3;

@@ -44,6 +44,20 @@ public class ClienteDAO {
         }
     }
 
+    public ResultSet listarComboBox() {
+        connection = new ConnectionFactory().getConnection();
+        String sql = "SELECT * FROM cliente ORDER BY nomeCliente;";
+        try{
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            return stmt.executeQuery();
+        }
+        catch(Exception erro){
+            JOptionPane.showMessageDialog(null,"Ocorreu um erro!");
+            return null;
+        }
+        
+    }
+
     public void update(Cliente cliente) {
         String sql = "UPDATE cliente SET NomeCliente = ?, cpfCliente = ?, cepCliente = ?, ederecocliente = ?, telefoneCliente = ? WHERE idCliente = ?";
         try {
@@ -78,9 +92,9 @@ public class ClienteDAO {
     public List<Cliente> leitura() {
         connection = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs = null; 
+        ResultSet rs = null;
 
-        List<Cliente> clientes = new ArrayList<>(); 
+        List<Cliente> clientes = new ArrayList<>();
         try {
             stmt = connection.prepareStatement("SELECT * FROM cliente");
             rs = stmt.executeQuery();

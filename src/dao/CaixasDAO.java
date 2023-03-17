@@ -24,7 +24,7 @@ public class CaixasDAO {
     double valorTotal;
     String nomeCliente;
     String formaPagamento;
-    
+
     public CaixasDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
@@ -33,12 +33,12 @@ public class CaixasDAO {
         String sql = "INSERT INTO caixas (idCliente, dataVenda, valorTotal, nomeCliente, formaPagamento ) VALUES(?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt     (1, caixas.getIdCliente());
-            stmt.setInt     (2, caixas.getIdProduto());
-            stmt.setString  (3, caixas.getDataVenda());
-            stmt.setDouble  (4, caixas.getValorTotal());
-            stmt.setString  (5, caixas.getNomeCliente());
-            stmt.setString  (6, caixas.getFormaPagamento());
+            stmt.setInt(1, caixas.getIdCliente());
+            stmt.setInt(2, caixas.getIdProduto());
+            stmt.setString(3, caixas.getDataVenda());
+            stmt.setDouble(4, caixas.getValorTotal());
+            stmt.setString(5, caixas.getNomeCliente());
+            stmt.setString(6, caixas.getFormaPagamento());
 
             stmt.execute();
             stmt.close();
@@ -75,12 +75,15 @@ public class CaixasDAO {
             throw new RuntimeException(u);
         }
     }
+    
+    
+
     public List<Caixas> leitura() {
         connection = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs = null; 
+        ResultSet rs = null;
 
-        List<Caixas> caixas = new ArrayList<>(); 
+        List<Caixas> caixas = new ArrayList<>();
         try {
             stmt = connection.prepareStatement("SELECT * FROM caixas");
             rs = stmt.executeQuery();
