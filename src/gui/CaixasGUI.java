@@ -113,6 +113,12 @@ public class CaixasGUI extends javax.swing.JFrame {
         txfIdCliente.setBackground(new java.awt.Color(255, 255, 255));
         txfIdCliente.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         txfIdCliente.setForeground(new java.awt.Color(0, 0, 0));
+        txfIdCliente.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfIdCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txfIdClienteActionPerformed(evt);
+            }
+        });
 
         jLabel8.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -133,6 +139,11 @@ public class CaixasGUI extends javax.swing.JFrame {
         cbProdutos.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         cbProdutos.setForeground(new java.awt.Color(0, 0, 0));
         cbProdutos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecione o produto" }));
+        cbProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbProdutosActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
@@ -485,6 +496,9 @@ public class CaixasGUI extends javax.swing.JFrame {
             while (rs.next()) {
                 idCliente.addElement(rs.getInt(1));
                 cbNomeCliente.addItem(rs.getString(2));
+                
+               
+                txfIdCliente.setText(rs.getString(-1));
             }
 
         } catch (Exception e) {
@@ -503,6 +517,9 @@ public class CaixasGUI extends javax.swing.JFrame {
             while (rs.next()) {
                 idProduto.addElement(rs.getInt(1));
                 cbProdutos.addItem(rs.getString(2));
+                
+                
+                
             }
 
         } catch (Exception e) {
@@ -536,6 +553,14 @@ public class CaixasGUI extends javax.swing.JFrame {
         txfQuantidade.setText("");
         txfIdProduto.setText("");
     }//GEN-LAST:event_somar1ActionPerformed
+
+    private void cbProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProdutosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbProdutosActionPerformed
+
+    private void txfIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfIdClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txfIdClienteActionPerformed
 
     /**
      * @param args the command line arguments

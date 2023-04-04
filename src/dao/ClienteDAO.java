@@ -47,6 +47,7 @@ public class ClienteDAO {
     public ResultSet listarComboBox() {
         connection = new ConnectionFactory().getConnection();
         String sql = "SELECT * FROM cliente ORDER BY nomeCliente;";
+        String idC = "SELECT * FROM cliente ORDER BY idCliente;";
         try{
             PreparedStatement stmt = connection.prepareStatement(sql);
             return stmt.executeQuery();

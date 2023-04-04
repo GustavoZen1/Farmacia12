@@ -31,7 +31,7 @@ public class Menu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(248, 248, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menu principal", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 48), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Menu", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 48), new java.awt.Color(0, 0, 0))); // NOI18N
 
         btVendas.setBackground(new java.awt.Color(255, 255, 255));
         btVendas.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N

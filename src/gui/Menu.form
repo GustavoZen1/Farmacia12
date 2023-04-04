@@ -40,7 +40,7 @@
         </Property>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder justification="2" title="Menu principal">
+            <TitledBorder justification="2" title="Menu">
               <Font PropertyName="font" name="Arial" size="48" style="0"/>
               <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
