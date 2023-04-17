@@ -22,7 +22,6 @@ public class ProdutoDAO {
     double valorProduto;
     int quantidadeProduto;
 
-
     public ProdutoDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
@@ -30,21 +29,18 @@ public class ProdutoDAO {
     public ResultSet listarComboBox() {
         connection = new ConnectionFactory().getConnection();
         String sql = "SELECT * FROM produto ORDER BY nomeProduto;";
-        try{
+        try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             return stmt.executeQuery();
-        }
-        catch(Exception erro){
-            JOptionPane.showMessageDialog(null,"Ocorreu um erro!");
+        } catch (Exception erro) {
+            JOptionPane.showMessageDialog(null, "Ocorreu um erro!");
             return null;
         }
-        
+
     }
-    
-    
-    
+
     public void adiciona(Produto produto) {
-        String sql = "INSERT INTO produto (nomeProduto, bula, valor, quantidade) VALUES(?,?,?,?)";
+        String sql = "INSERT INTO produto (nomeProduto, marcaProduto, valorProduto, quantidadeProduto) VALUES(?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto.getNomeProduto());
@@ -60,7 +56,7 @@ public class ProdutoDAO {
     }
 
     public void update(Produto produto) {
-        String sql = "UPDATE produto SET nomeProduto = ?, bula = ?, valor = ?, quantidade = ? WHERE idProduto = ?";
+        String sql = "UPDATE produto SET nomeProduto = ?, marcaProduto = ?, valorProduto = ?, quantidadeProduto = ? WHERE idProduto = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto.getNomeProduto());
@@ -68,6 +64,19 @@ public class ProdutoDAO {
             stmt.setDouble(3, produto.getValorProduto());
             stmt.setInt(4, produto.getQuantidadeProduto());
             stmt.setInt(5, produto.getIdProduto());
+            stmt.execute();
+            stmt.close();
+        } catch (SQLException u) {
+            throw new RuntimeException(u);
+        }
+    }
+
+    public void updateQuantidade(Produto produto) {
+        String sql = "UPDATE produto SET quantidadeProduto = ? WHERE idProduto = ?";
+        try {
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, produto.getQuantidadeProduto());
+            stmt.setInt(2, produto.getIdProduto());
             stmt.execute();
             stmt.close();
         } catch (SQLException u) {
@@ -88,12 +97,13 @@ public class ProdutoDAO {
             throw new RuntimeException(u);
         }
     }
+
     public List<Produto> leitura() {
         connection = new ConnectionFactory().getConnection();
         PreparedStatement stmt = null;
-        ResultSet rs = null; 
+        ResultSet rs = null;
 
-        List<Produto> produtos = new ArrayList<>(); 
+        List<Produto> produtos = new ArrayList<>();
         try {
             stmt = connection.prepareStatement("SELECT * FROM produto");
             rs = stmt.executeQuery();
@@ -101,9 +111,9 @@ public class ProdutoDAO {
                 Produto produto = new Produto();
                 produto.setIdProduto(rs.getInt("idProduto"));
                 produto.setNomeProduto(rs.getString("nomeProduto"));
-                produto.setMarcaProduto(rs.getString("bula"));
-                produto.setValorProduto(rs.getInt("valor"));
-                produto.setQuantidadeProduto(rs.getInt("quantidade"));
+                produto.setMarcaProduto(rs.getString("marcaProduto"));
+                produto.setValorProduto(rs.getInt("valorProduto"));
+                produto.setQuantidadeProduto(rs.getInt("quantidadeProduto"));
                 produtos.add(produto);
             }
         } catch (SQLException ex) {

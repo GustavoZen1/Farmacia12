@@ -72,6 +72,11 @@ public class ProdutoGUI extends javax.swing.JFrame {
         jLabel3.setBounds(20, 30, 70, 30);
 
         txtMarcaProduto.setBorder(null);
+        txtMarcaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMarcaProdutoActionPerformed(evt);
+            }
+        });
         boderUsuario1.add(txtMarcaProduto);
         txtMarcaProduto.setBounds(20, 130, 200, 30);
 
@@ -323,6 +328,10 @@ public class ProdutoGUI extends javax.swing.JFrame {
     private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
+
+    private void txtMarcaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMarcaProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMarcaProdutoActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

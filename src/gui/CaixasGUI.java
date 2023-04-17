@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Caixas;
 import java.sql.ResultSet;
+import modelo.Produto;
 
 public class CaixasGUI extends javax.swing.JFrame {
     
@@ -370,22 +371,22 @@ public class CaixasGUI extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(258, Short.MAX_VALUE)
+                .addComponent(jLabel10)
+                .addContainerGap(259, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel10)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 621, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(16, 16, 16))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         boderUsuario1.add(jPanel2);
@@ -436,6 +437,7 @@ public class CaixasGUI extends javax.swing.JFrame {
         
         Caixas caixas = new Caixas();
         caixas.setIdCliente(Integer.parseInt(txfIdCliente.getText()));
+        caixas.setIdProduto(Integer.parseInt(txfIdProduto.getText()));
         caixas.setDataVenda(txfData.getText());
         caixas.setValorTotal(Double.parseDouble(txfValorTotal.getText()));
         caixas.setNomeCliente(cbNomeCliente.getSelectedItem().toString());
@@ -443,7 +445,19 @@ public class CaixasGUI extends javax.swing.JFrame {
         CaixasDAO dao = new CaixasDAO();
         dao.adiciona(caixas);
         JOptionPane.showMessageDialog(null, "Compra inserido com sucesso! ");
+
         
+        if (jtVendas.getSelectedRow() != -1) {
+        
+            Produto produto = new Produto();
+            produto.setQuantidadeProduto(Integer.parseInt(txfQuantidade.getText()));
+            produto.setIdProduto((int) jtVendas.getValueAt(jtVendas.getSelectedRow(), 0));
+
+
+            ProdutoDAO dAO = new ProdutoDAO();
+            dAO.updateQuantidade(produto);
+            JOptionPane.showMessageDialog(null, " Produto " + txfIdProduto.getText() + " atualizado com sucesso! ");
+        }
 
     }//GEN-LAST:event_confirmarCompraActionPerformed
 
@@ -498,7 +512,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                 cbNomeCliente.addItem(rs.getString(2));
                 
                
-                txfIdCliente.setText(rs.getString(-1));
+                txfIdCliente.setText(rs.getString(1));
             }
 
         } catch (Exception e) {
@@ -518,7 +532,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                 idProduto.addElement(rs.getInt(1));
                 cbProdutos.addItem(rs.getString(2));
                 
-                
+                txfIdProduto.setText(rs.getString(1));
                 
             }
 
@@ -599,6 +613,7 @@ public class CaixasGUI extends javax.swing.JFrame {
             }
         });
     }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton apagar;

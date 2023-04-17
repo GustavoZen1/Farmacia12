@@ -30,7 +30,7 @@ public class CaixasDAO {
     }
 
     public void adiciona(Caixas caixas) {
-        String sql = "INSERT INTO caixas (idCliente, dataVenda, valorTotal, nomeCliente, formaPagamento ) VALUES(?,?,?,?,?)";
+        String sql = "INSERT INTO caixas (idCliente, idProduto, dataVenda, valorTotal, nomeCliente, formaPagamento ) VALUES(?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, caixas.getIdCliente());
@@ -39,7 +39,7 @@ public class CaixasDAO {
             stmt.setDouble(4, caixas.getValorTotal());
             stmt.setString(5, caixas.getNomeCliente());
             stmt.setString(6, caixas.getFormaPagamento());
-
+            
             stmt.execute();
             stmt.close();
         } catch (SQLException u) {
