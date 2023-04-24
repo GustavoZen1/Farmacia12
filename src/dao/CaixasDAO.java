@@ -12,6 +12,7 @@ import modelo.Caixas;
 
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import modelo.Produto;
 
 public class CaixasDAO {
 
@@ -24,13 +25,14 @@ public class CaixasDAO {
     double valorTotal;
     String nomeCliente;
     String formaPagamento;
+    int quantidadeVendida;
 
     public CaixasDAO() {
         this.connection = new ConnectionFactory().getConnection();
     }
 
     public void adiciona(Caixas caixas) {
-        String sql = "INSERT INTO caixas (idCliente, idProduto, dataVenda, valorTotal, nomeCliente, formaPagamento ) VALUES(?,?,?,?,?,?)";
+        String sql = "INSERT INTO caixas (idCliente, idProduto, dataVenda, valorTotal, nomeCliente, formaPagamento, quantidadeVendida) VALUES(?,?,?,?,?,?,?)";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setInt(1, caixas.getIdCliente());
@@ -39,7 +41,8 @@ public class CaixasDAO {
             stmt.setDouble(4, caixas.getValorTotal());
             stmt.setString(5, caixas.getNomeCliente());
             stmt.setString(6, caixas.getFormaPagamento());
-            
+            stmt.setInt(7, caixas.getQuantidadeVendida());
+
             stmt.execute();
             stmt.close();
         } catch (SQLException u) {
@@ -48,18 +51,25 @@ public class CaixasDAO {
     }
 
     public void update(Caixas caixas) {
-        String sql = "UPDATE caixas SET  dataVenda = ?, valorTotal = ?, formaPagamento WHERE idCaixas = ?";
+        String sql = "UPDATE caixas SET  dataVenda = ?, valorTotal = ?, formaPagamento = ? WHERE idCaixas = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, caixas.getDataVenda());
             stmt.setDouble(2, caixas.getValorTotal());
             stmt.setString(3, caixas.getFormaPagamento());
+            stmt.setInt(4, caixas.getQuantidadeVendida());
             stmt.execute();
             stmt.close();
         } catch (SQLException u) {
             throw new RuntimeException(u);
         }
 
+    }
+
+    
+   
+    public static void main(String[] args) {
+        System.out.println();
     }
 
     public void delete(Caixas caixas) {
@@ -75,8 +85,6 @@ public class CaixasDAO {
             throw new RuntimeException(u);
         }
     }
-    
-    
 
     public List<Caixas> leitura() {
         connection = new ConnectionFactory().getConnection();

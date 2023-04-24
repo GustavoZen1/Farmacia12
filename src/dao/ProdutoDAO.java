@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import modelo.Produto;
 import java.util.logging.Logger;
 import java.util.logging.Level;
+import modelo.Caixas;
 
 public class ProdutoDAO {
 
@@ -55,8 +56,14 @@ public class ProdutoDAO {
         }
     }
 
+    public void vender(Produto produto, Caixas caixa) {
+
+        connection = new ConnectionFactory().getConnection();
+
+    }
+
     public void update(Produto produto) {
-        String sql = "UPDATE produto SET nomeProduto = ?, marcaProduto = ?, valorProduto = ?, quantidadeProduto = ? WHERE idProduto = ?";
+        String sql = "UPDATE produto SET nomeProduto = ?, marcaProduto = ?, valorProduto = ?, quantidadeProduto = quantidadeProduto - ? WHERE idProduto = ?";
         try {
             PreparedStatement stmt = connection.prepareStatement(sql);
             stmt.setString(1, produto.getNomeProduto());
@@ -71,18 +78,12 @@ public class ProdutoDAO {
         }
     }
 
-    public void updateQuantidade(Produto produto) {
-        String sql = "UPDATE produto SET quantidadeProduto = ? WHERE idProduto = ?";
-        try {
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, produto.getQuantidadeProduto());
-            stmt.setInt(2, produto.getIdProduto());
-            stmt.execute();
-            stmt.close();
-        } catch (SQLException u) {
-            throw new RuntimeException(u);
-        }
+    public void PuxarVariavel(Produto produto) {
+
+        
+
     }
+    
 
     public void delete(Produto produto) {
         String sql = "DELETE FROM produto WHERE idProduto = ?";

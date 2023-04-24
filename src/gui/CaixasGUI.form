@@ -161,7 +161,7 @@
                                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="1" attributes="0">
                                       <Group type="102" attributes="0">
-                                          <Component id="txfQuantidade" min="-2" pref="170" max="-2" attributes="0"/>
+                                          <Component id="txfQuantidadeVendida" min="-2" pref="170" max="-2" attributes="0"/>
                                           <EmptySpace max="32767" attributes="0"/>
                                           <Component id="txfValorU" min="-2" pref="170" max="-2" attributes="0"/>
                                       </Group>
@@ -236,7 +236,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="txfValorU" max="32767" attributes="0"/>
-                              <Component id="txfQuantidade" pref="50" max="32767" attributes="0"/>
+                              <Component id="txfQuantidadeVendida" pref="50" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="somar1" min="-2" pref="50" max="-2" attributes="0"/>
@@ -408,7 +408,7 @@
                     <Property name="text" type="java.lang.String" value="Quantidade de produtos:"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txfQuantidade">
+                <Component class="javax.swing.JTextField" name="txfQuantidadeVendida">
                   <Properties>
                     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="ff" green="ff" red="ff" type="rgb"/>
@@ -429,7 +429,7 @@
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfQuantidadeActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txfQuantidadeVendidaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="jLabel6">
@@ -578,6 +578,7 @@
                     <Property name="text" type="java.lang.String" value="Confirmar"/>
                   </Properties>
                   <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="confirmarCompraMouseClicked"/>
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="confirmarCompraActionPerformed"/>
                   </Events>
                 </Component>

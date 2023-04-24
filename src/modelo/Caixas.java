@@ -9,6 +9,7 @@ public class Caixas {
     double valorTotal;
     String nomeCliente;
     String formaPagamento;
+     int quantidadeVendida = 0;
 
     public int getIdCaixas() {
         return idCaixas;
@@ -65,6 +66,16 @@ public class Caixas {
     public void setFormaPagamento(String formaPagamento) {
         this.formaPagamento = formaPagamento;
     }
+
+    public int getQuantidadeVendida() {
+        return quantidadeVendida;
+    }
+
+    public void setQuantidadeVendida(int quantidadeVendida) {
+        this.quantidadeVendida = quantidadeVendida;
+    }
+
+    
 
     
     

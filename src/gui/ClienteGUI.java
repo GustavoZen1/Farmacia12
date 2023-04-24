@@ -393,6 +393,8 @@ public class ClienteGUI extends javax.swing.JFrame {
         txtEndereco.setText("");
         txtTelefone.setText("");
         leiaJTable();
+        
+        
     }//GEN-LAST:event_btCadastroActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed

@@ -1,29 +1,35 @@
 package gui;
 
-
 import dao.CaixasDAO;
 import dao.ClienteDAO;
 import dao.ProdutoDAO;
 import factory.ConnectionFactory;
 import java.awt.Toolkit;
+import java.sql.PreparedStatement;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelo.Caixas;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import modelo.Produto;
+import gui.ProdutoGUI;
+import java.sql.Connection;
 
 public class CaixasGUI extends javax.swing.JFrame {
-    
+
     double valorT = 0;
-    
+    private Produto produto;
+    private Connection connection;
+    int quantidade = 0, quantidadeCaixa = 0, totalQuantidade = 0;
+
     public CaixasGUI() {
         initComponents();
         valoresComboxProduto();
         valoresComboxCliente();
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -46,7 +52,7 @@ public class CaixasGUI extends javax.swing.JFrame {
         txfIdProduto = new javax.swing.JTextField();
         cbProdutos = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
-        txfQuantidade = new javax.swing.JTextField();
+        txfQuantidadeVendida = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txfValorU = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
@@ -150,14 +156,14 @@ public class CaixasGUI extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Quantidade de produtos:");
 
-        txfQuantidade.setBackground(new java.awt.Color(255, 255, 255));
-        txfQuantidade.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        txfQuantidade.setForeground(new java.awt.Color(0, 0, 0));
-        txfQuantidade.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        txfQuantidade.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
-        txfQuantidade.addActionListener(new java.awt.event.ActionListener() {
+        txfQuantidadeVendida.setBackground(new java.awt.Color(255, 255, 255));
+        txfQuantidadeVendida.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        txfQuantidadeVendida.setForeground(new java.awt.Color(0, 0, 0));
+        txfQuantidadeVendida.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txfQuantidadeVendida.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(153, 153, 153)));
+        txfQuantidadeVendida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txfQuantidadeActionPerformed(evt);
+                txfQuantidadeVendidaActionPerformed(evt);
             }
         });
 
@@ -229,6 +235,11 @@ public class CaixasGUI extends javax.swing.JFrame {
         confirmarCompra.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
         confirmarCompra.setForeground(new java.awt.Color(0, 0, 0));
         confirmarCompra.setText("Confirmar");
+        confirmarCompra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirmarCompraMouseClicked(evt);
+            }
+        });
         confirmarCompra.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmarCompraActionPerformed(evt);
@@ -255,7 +266,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel8Layout.createSequentialGroup()
-                                .addComponent(txfQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txfQuantidadeVendida, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(txfValorU, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txfValorTotal, javax.swing.GroupLayout.Alignment.LEADING)
@@ -314,7 +325,7 @@ public class CaixasGUI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txfValorU)
-                    .addComponent(txfQuantidade, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
+                    .addComponent(txfQuantidadeVendida, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(somar1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -428,42 +439,84 @@ public class CaixasGUI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
+
     private void txfValorTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfValorTotalActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txfValorTotalActionPerformed
 
     private void confirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCompraActionPerformed
-        
+
         Caixas caixas = new Caixas();
         caixas.setIdCliente(Integer.parseInt(txfIdCliente.getText()));
         caixas.setIdProduto(Integer.parseInt(txfIdProduto.getText()));
         caixas.setDataVenda(txfData.getText());
         caixas.setValorTotal(Double.parseDouble(txfValorTotal.getText()));
         caixas.setNomeCliente(cbNomeCliente.getSelectedItem().toString());
-        caixas.setFormaPagamento(cbFormaPagamento.getSelectedItem().toString()); 
+        caixas.setFormaPagamento(cbFormaPagamento.getSelectedItem().toString());
+        caixas.setQuantidadeVendida(Integer.parseInt(jtVendas.getValueAt(jtVendas.getSelectedRow(), 2).toString()));
         CaixasDAO dao = new CaixasDAO();
         dao.adiciona(caixas);
         JOptionPane.showMessageDialog(null, "Compra inserido com sucesso! ");
+        dao.update(caixas);
 
-        
-        if (jtVendas.getSelectedRow() != -1) {
-        
-            Produto produto = new Produto();
-            produto.setQuantidadeProduto(Integer.parseInt(txfQuantidade.getText()));
-            produto.setIdProduto((int) jtVendas.getValueAt(jtVendas.getSelectedRow(), 0));
+        try {
 
+            connection = new ConnectionFactory().getConnection();
 
-            ProdutoDAO dAO = new ProdutoDAO();
-            dAO.updateQuantidade(produto);
-            JOptionPane.showMessageDialog(null, " Produto " + txfIdProduto.getText() + " atualizado com sucesso! ");
+            String sql = "SELECT quantidadeProduto FROM produto WHERE idProduto = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, (Integer.parseInt(jtVendas.getValueAt(jtVendas.getSelectedRow(), 0).toString())));
+            stmt.close();
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                quantidade = rs.getInt("quantidadeProduto");
+                System.out.println("Quantidade do produto: " + quantidade);
+                quantidadeCaixa = (Integer.parseInt(txfQuantidadeVendida.getText()));
+                totalQuantidade = quantidade - quantidadeCaixa;
+                
+                
+                
+                
+
+                if (quantidade < quantidadeCaixa) {
+
+                    JOptionPane.showMessageDialog(null, "Valor vendido é maior que a quantidade cadastrada!");
+
+                } else if (quantidadeCaixa <= quantidade) {
+
+                    String sql = "UPDATE produto SET quantidadeProduto = ? WHERE idProduto = ?";
+                    try {
+                        stmt.setInt(1, totalQuantidade);
+                        stmt.setInt(2, produto.getIdProduto());
+                        stmt.execute();
+                        stmt.close();
+                    } catch (SQLException u) {
+                        throw new RuntimeException(u);
+                    }
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Caractere inválido!");
+
+                }
+
+            } else {
+                System.out.println("Produto não encontrado");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar a quantidade do produto: " + e.getMessage());
         }
-
+        JOptionPane.showMessageDialog(null, "Item abatido com sucesso! ");
+    
     }//GEN-LAST:event_confirmarCompraActionPerformed
+
 
     private void jbCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbCancelActionPerformed
         txfValorU.setText("");
-        txfQuantidade.setText("");
+        txfQuantidadeVendida.setText("");
         txfData.setText("");
         txfIdProduto.setText("");
         cbNomeCliente.setSelectedItem(0);
@@ -479,9 +532,9 @@ public class CaixasGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbNomeClienteActionPerformed
 
-    private void txfQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfQuantidadeActionPerformed
+    private void txfQuantidadeVendidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfQuantidadeVendidaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txfQuantidadeActionPerformed
+    }//GEN-LAST:event_txfQuantidadeVendidaActionPerformed
 
     private void txfValorUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txfValorUActionPerformed
         // TODO add your handling code here:
@@ -490,7 +543,7 @@ public class CaixasGUI extends javax.swing.JFrame {
     private void apagarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_apagarActionPerformed
 
         txfValorU.setText("");
-        txfQuantidade.setText("");
+        txfQuantidadeVendida.setText("");
         txfData.setText("");
         txfIdProduto.setText("");
         txfIdCliente.setText("");
@@ -498,7 +551,6 @@ public class CaixasGUI extends javax.swing.JFrame {
         txfValorTotal.setText("");
     }//GEN-LAST:event_apagarActionPerformed
 
-    
     public void valoresComboxCliente() {
         Vector<Integer> idCliente = new Vector<Integer>();
         try {
@@ -510,8 +562,7 @@ public class CaixasGUI extends javax.swing.JFrame {
             while (rs.next()) {
                 idCliente.addElement(rs.getInt(1));
                 cbNomeCliente.addItem(rs.getString(2));
-                
-               
+
                 txfIdCliente.setText(rs.getString(1));
             }
 
@@ -519,7 +570,7 @@ public class CaixasGUI extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ocorreu um erro no ComboBox");
         }
     }
-    
+
     public void valoresComboxProduto() {
         Vector<Integer> idProduto = new Vector<Integer>();
         try {
@@ -531,9 +582,9 @@ public class CaixasGUI extends javax.swing.JFrame {
             while (rs.next()) {
                 idProduto.addElement(rs.getInt(1));
                 cbProdutos.addItem(rs.getString(2));
-                
+
                 txfIdProduto.setText(rs.getString(1));
-                
+
             }
 
         } catch (Exception e) {
@@ -546,7 +597,7 @@ public class CaixasGUI extends javax.swing.JFrame {
         //Puxando o valor das caixa
         double valorU = Double.parseDouble(txfValorU.getText());
 
-        double quantidade = Double.parseDouble(txfQuantidade.getText());
+        double quantidade = Double.parseDouble(txfQuantidadeVendida.getText());
 
         //Somando o valor da Unidade com o Total
         valorU = quantidade * valorU;
@@ -558,13 +609,13 @@ public class CaixasGUI extends javax.swing.JFrame {
 
         //Inserindo informações na tabela
         DefaultTableModel modelo = (DefaultTableModel) jtVendas.getModel();
-        Object[] dados = {txfIdProduto.getText(), cbProdutos.getSelectedItem().toString(), txfQuantidade.getText(), txfValorU.getText()};
+        Object[] dados = {txfIdProduto.getText(), cbProdutos.getSelectedItem().toString(), txfQuantidadeVendida.getText(), txfValorU.getText()};
         modelo.addRow(dados);
 
         //Apagando texto ruim
         cbProdutos.setSelectedItem(0);
         txfValorU.setText("");
-        txfQuantidade.setText("");
+        txfQuantidadeVendida.setText("");
         txfIdProduto.setText("");
     }//GEN-LAST:event_somar1ActionPerformed
 
@@ -576,12 +627,16 @@ public class CaixasGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txfIdClienteActionPerformed
 
+    private void confirmarCompraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirmarCompraMouseClicked
+
+
+    }//GEN-LAST:event_confirmarCompraMouseClicked
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        
-        
+
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -613,7 +668,7 @@ public class CaixasGUI extends javax.swing.JFrame {
             }
         });
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton apagar;
@@ -648,7 +703,7 @@ public class CaixasGUI extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField txfData;
     private javax.swing.JTextField txfIdCliente;
     private javax.swing.JTextField txfIdProduto;
-    private javax.swing.JTextField txfQuantidade;
+    private javax.swing.JTextField txfQuantidadeVendida;
     private javax.swing.JTextField txfValorTotal;
     private javax.swing.JTextField txfValorU;
     // End of variables declaration//GEN-END:variables
