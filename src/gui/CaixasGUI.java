@@ -21,7 +21,7 @@ public class CaixasGUI extends javax.swing.JFrame {
     double valorT = 0;
     private Produto produto;
     private Connection connection;
-    int quantidade = 0, quantidadeCaixa = 0, totalQuantidade = 0;
+    int quantidade = 0,quantidadeCaixa = 0 , totalQuantidade = 0, quantidadeEstoque = 0;
 
     public CaixasGUI() {
         initComponents();
@@ -446,6 +446,7 @@ public class CaixasGUI extends javax.swing.JFrame {
 
     private void confirmarCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarCompraActionPerformed
 
+// Salvado compra no banco de dados caixas
         Caixas caixas = new Caixas();
         caixas.setIdCliente(Integer.parseInt(txfIdCliente.getText()));
         caixas.setIdProduto(Integer.parseInt(txfIdProduto.getText()));
@@ -459,58 +460,30 @@ public class CaixasGUI extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Compra inserido com sucesso! ");
         dao.update(caixas);
 
-        try {
+//Comparando quantidade somada com quantidade existente no banco de dados
+        if (quantidadeCaixa < quantidadeEstoque) {
 
-            connection = new ConnectionFactory().getConnection();
-
-            String sql = "SELECT quantidadeProduto FROM produto WHERE idProduto = ?";
-
-            PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, (Integer.parseInt(jtVendas.getValueAt(jtVendas.getSelectedRow(), 0).toString())));
-            stmt.close();
-            ResultSet rs = stmt.executeQuery();
-
-            if (rs.next()) {
-                quantidade = rs.getInt("quantidadeProduto");
-                System.out.println("Quantidade do produto: " + quantidade);
-                quantidadeCaixa = (Integer.parseInt(txfQuantidadeVendida.getText()));
-                totalQuantidade = quantidade - quantidadeCaixa;
-                
-                
-                
-                
-
-                if (quantidade < quantidadeCaixa) {
-
-                    JOptionPane.showMessageDialog(null, "Valor vendido é maior que a quantidade cadastrada!");
-
-                } else if (quantidadeCaixa <= quantidade) {
-
-                    String sql = "UPDATE produto SET quantidadeProduto = ? WHERE idProduto = ?";
-                    try {
-                        stmt.setInt(1, totalQuantidade);
-                        stmt.setInt(2, produto.getIdProduto());
-                        stmt.execute();
-                        stmt.close();
-                    } catch (SQLException u) {
-                        throw new RuntimeException(u);
-                    }
-
-                } else {
-
-                    JOptionPane.showMessageDialog(null, "Caractere inválido!");
-
-                }
-
-            } else {
-                System.out.println("Produto não encontrado");
+//Caso a quantidade esteja correta agora fazendo update da nova quantidade no banco de dados produto
+            String sql = "UPDATE produto SET quantidadeProduto = ? WHERE idProduto = ?";
+            try {
+                PreparedStatement stmt = connection.prepareStatement(sql);
+                stmt.setInt(1, totalQuantidade);
+                stmt.setInt(2, Integer.parseInt(txfIdProduto.getText()));
+                stmt.execute();
+                stmt.close();
+            } catch (SQLException u) {
+                throw new RuntimeException(u);
             }
 
-        } catch (SQLException e) {
-            System.err.println("Erro ao buscar a quantidade do produto: " + e.getMessage());
+        } else {
+
+            JOptionPane.showMessageDialog(null, "Quantidade vendida maior do que a quantidade em estoque!" + quantidadeCaixa+ " "+ quantidadeEstoque );
+
         }
+
         JOptionPane.showMessageDialog(null, "Item abatido com sucesso! ");
-    
+
+
     }//GEN-LAST:event_confirmarCompraActionPerformed
 
 
@@ -597,10 +570,10 @@ public class CaixasGUI extends javax.swing.JFrame {
         //Puxando o valor das caixa
         double valorU = Double.parseDouble(txfValorU.getText());
 
-        double quantidade = Double.parseDouble(txfQuantidadeVendida.getText());
+        double quantidadeVendida = Double.parseDouble(txfQuantidadeVendida.getText());
 
         //Somando o valor da Unidade com o Total
-        valorU = quantidade * valorU;
+        valorU = quantidadeVendida * valorU;
         valorT = valorU + valorT;
         //Transferindo o resultado para texto
         double valorTDouble = valorT;
@@ -612,11 +585,43 @@ public class CaixasGUI extends javax.swing.JFrame {
         Object[] dados = {txfIdProduto.getText(), cbProdutos.getSelectedItem().toString(), txfQuantidadeVendida.getText(), txfValorU.getText()};
         modelo.addRow(dados);
 
+//selecionando quantidade do banco de dados
+        try {
+            connection = new ConnectionFactory().getConnection();
+
+            String sql = "SELECT quantidadeProduto FROM produto WHERE idProduto = ?";
+
+            PreparedStatement stmt = connection.prepareStatement(sql);
+            stmt.setInt(1, Integer.parseInt(txfIdProduto.getText()));
+
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                 quantidadeEstoque = rs.getInt("quantidadeProduto");
+                 quantidadeCaixa = Integer.parseInt(txfQuantidadeVendida.getText());
+
+                System.out.println("Quantidade do produto: " + quantidadeEstoque);
+                System.out.println("Quantidade vendida: " + quantidadeCaixa);
+
+                
+                totalQuantidade = quantidadeEstoque - quantidadeCaixa;
+
+                System.out.println("Produto encontrado com sucesso " + totalQuantidade);
+
+            } else {
+                System.out.println("Produto não encontrado");
+            }
+
+        } catch (SQLException e) {
+            System.err.println("Erro ao buscar a quantidade do produto: " + e.getMessage());
+        }
+
         //Apagando texto ruim
         cbProdutos.setSelectedItem(0);
         txfValorU.setText("");
-        txfQuantidadeVendida.setText("");
-        txfIdProduto.setText("");
+
+        
+
     }//GEN-LAST:event_somar1ActionPerformed
 
     private void cbProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbProdutosActionPerformed
@@ -650,13 +655,17 @@ public class CaixasGUI extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CaixasGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaixasGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CaixasGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaixasGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CaixasGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaixasGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CaixasGUI.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(CaixasGUI.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
